@@ -1,0 +1,72 @@
+<div class="col-12">
+    <div class="card">
+        <p-table #dt1 [value]="customers1" dataKey="id" [rows]="10" [loading]="loading" [rowHover]="true" styleClass="p-datatable-gridlines" [paginator]="true" [globalFilterFields]="['name','country.name','representative.name','status']" responsiveLayout="scroll">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>
+                        <div class="flex justify-content-between align-items-center">
+                           Nombres
+                        </div>
+                    </th>
+                    <th>
+                        <div class="flex justify-content-between align-items-center">
+                            Permisos
+                        </div>
+                    </th>
+                    <th style="width: 8rem">
+                        <div class="flex justify-content-between align-items-center">
+                            Opciones
+                        </div>
+                    </th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-customer>
+                <tr>
+                    <td style="min-width: 6rem;">
+                        <span class="image-text ml-2">{{customer.country.name}}</span>
+                    </td>
+                    <td style="min-width: 8rem;">
+                        PERMISOS
+                    </td>
+                    <td class="text-center" style="min-width: 6rem;">
+                        <button (click)="display=true" pButton pRipple type="button" icon="pi pi-pencil" class="p-button-rounded mr-2 mb-2"></button>
+                        <button pButton pRipple type="button" icon="pi pi-trash" class="p-button-rounded mr-2 mb-2"></button>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</div>
+<p-dialog header="Roles y permisos" appendTo="body"  [(visible)]="display" [responsive]="true" showEffect="fade" [modal]="true" >
+    <div class="col-12 lg:col-4 md:col-6">
+        <div class="card widget-tasks">
+            <ul class="checkboxes">
+                <li class="checkbox-row">
+                    <div class="grid">
+                            <p-checkbox binary="true" title="gckyckcck">Sales Report</p-checkbox>
+                    </div>
+                </li>
+                <li class="checkbox-row even">
+                        <div class="col-6 checkbox">
+                            <p-checkbox binary="true">gvhvhkvkvkvkv</p-checkbox>
+                        </div>
+                </li>
+
+                <li class="checkbox-row">
+                  
+                        <div class="col-6 checkbox">
+                            <p-checkbox binary="true">Customer service</p-checkbox>
+                            
+                        </div>
+                  
+                </li>
+            </ul>
+        </div>
+    </div>
+    <p-footer>
+        <div class="ui-dialog-buttonpane ui-helper-clearfix">
+            <button type="button" pButton icon="fa fa-close"  label="Borrar"></button>
+            <button type="button" pButton icon="fa fa-check" label="Guardar"></button>
+        </div>
+    </p-footer>
+</p-dialog>

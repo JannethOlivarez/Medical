@@ -1,0 +1,58 @@
+<p-card>
+    <div style="overflow-x:auto;">
+        <div  >
+            <strong style="font-family:Arial">V EXAMEN PSICOLÓGICO</strong>
+        </div>
+            <table id="mitable" >
+                <tr class="mitr">
+                    <td class="cornertd">
+                        <table>
+                            <tr>
+                                <td>
+                                    <div class="corner">
+                                        67
+                                    </div>
+                                </td>
+                                <td style="font-family:Arial">
+                                    Exámen Psicológico (Ver Anexo)
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td>
+                        <p-button  label="Descargar Anexo"
+                           ></p-button>
+                        <input  name="file" type="file" id="adjuntar" accept="application/pdf" class="ui-g-12 ui-md-12 ui-lg-12 inputUpload"
+                            placeholder="Subir Archivo..." />
+                    </td>
+                </tr>
+                <tr class="mitr">
+                    <td style="font-family:Arial">
+                        Observaciones:
+                    </td>
+                    <td>
+                        <textarea  pInputTextarea type="text" rows="2" name="observaciones"
+                             cols="150"></textarea>
+                    </td>
+                </tr>
+                <tr class="mitr">
+                    <td style="font-family:Arial">
+                        Opinión:
+                    </td>
+                    <td>
+                        <textarea  pInputTextarea type="text" rows="2e" cols="150" name="opinion"
+                            ></textarea>
+                    </td>
+                </tr>
+            </table>
+            <div class="ui-g-12">
+                    <p-messages ></p-messages>
+                </div>
+        <div class="ui-g-12" >
+            <div class=center>
+                <p-button label="GUARDAR" ></p-button>
+            </div>
+        </div>
+    </div>
+</p-card>
+

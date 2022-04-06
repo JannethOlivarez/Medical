@@ -1,0 +1,163 @@
+<p-card>
+    <table id="mitable" style="font-size: 13px;">
+        <tr>
+            <td style="border-right: 1px solid black;">
+                Marque cada punto con una x en la columna apropiada. <br>
+                Ponga N.E. si no ha evaluado el numeral
+            </td>
+            <td style="border-right: 1px solid black;">
+                Normal <br>
+                SI / NO / N.E.
+            </td>
+            <td>
+                Déscriba cada anormalidad en detalle, poniendo el número del <br>
+                punto que corresponde antes de cada anotación
+            </td>
+        </tr>
+
+    </table>
+    <!-- Otorrinolaringologia -->
+    <table id="mitable" style="font-size: 13px;">
+        <ng-container *ngFor="let examen of nomExaCliOtorrino; let i=index">
+
+            <tr style="border-top: 1px solid black;">
+                <td style="width: 35px;">
+                    <div class="corner">
+                        &nbsp;{{examen.numeral}}
+                    </div>
+                </td>
+                <td style="border-right: 1px solid black; width: 392px;">
+                    {{examen.nombre}}
+                </td>
+                <td style="border-right: 1px solid black; width: 104px;">
+                    <ng-container>
+                        <p-radioButton name="glucosa1" value="Chicago" [(ngModel)]="glucosa" inputId="glucosa1">
+                        </p-radioButton> &nbsp;&nbsp;
+                        <p-radioButton name="glucosa1" value="Chicago" [(ngModel)]="glucosa" inputId="glucosa1">
+                        </p-radioButton>&nbsp;&nbsp;
+                        <p-radioButton name="glucosa1" value="Chicago" [(ngModel)]="glucosa" inputId="glucosa1">
+                        </p-radioButton>
+                    </ng-container>
+                </td>
+                <td>
+                    <textarea name="" id="" cols="30" rows="2"></textarea>
+                </td>
+            </tr>
+        </ng-container>
+    </table>
+    <!-- Oftalmologia -->
+    <table id="mitable" style="font-size: 13px;">
+        <ng-container *ngFor="let examen of nomExaOftalmologico; let i=index">
+
+            <tr style="border-top: 1px solid black;">
+                <td style="width: 35px;">
+                    <div class="corner">
+                        &nbsp;{{examen.numeral}}
+                    </div>
+                </td>
+                <td style="border-right: 1px solid black; width: 392px;">
+                    {{examen.nombre}}
+                </td>
+                <td style="border-right: 1px solid black; width: 104px;">
+                    <ng-container>
+                        <p-radioButton name="glucosa1" value="Chicago" [(ngModel)]="glucosa" inputId="glucosa1">
+                        </p-radioButton> &nbsp;&nbsp;
+                        <p-radioButton name="glucosa1" value="Chicago" [(ngModel)]="glucosa" inputId="glucosa1">
+                        </p-radioButton>&nbsp;&nbsp;
+                        <p-radioButton name="glucosa1" value="Chicago" [(ngModel)]="glucosa" inputId="glucosa1">
+                        </p-radioButton>
+                    </ng-container>
+                </td>
+                <td>
+                    <textarea name="" id="" cols="30" rows="2"></textarea>
+                </td>
+            </tr>
+        </ng-container>
+    </table>
+    <!-- Medicina general 1 -->
+    <table id="mitable" style="font-size: 13px;">
+        <ng-container *ngFor="let examen of nomExaMedGeneral1; let i=index">
+
+            <tr style="border-top: 1px solid black;">
+                <td style="width: 35px;">
+                    <div class="corner">
+                        &nbsp;{{examen.numeral}}
+                    </div>
+                </td>
+                <td style="border-right: 1px solid black; width: 392px;">
+                    {{examen.nombre}}
+                </td>
+                <td style="border-right: 1px solid black; width: 104px;">
+                    <ng-container>
+                        <p-radioButton name="glucosa1" value="Chicago" [(ngModel)]="glucosa" inputId="glucosa1">
+                        </p-radioButton> &nbsp;&nbsp;
+                        <p-radioButton name="glucosa1" value="Chicago" [(ngModel)]="glucosa" inputId="glucosa1">
+                        </p-radioButton>&nbsp;&nbsp;
+                        <p-radioButton name="glucosa1" value="Chicago" [(ngModel)]="glucosa" inputId="glucosa1">
+                        </p-radioButton>
+                    </ng-container>
+                </td>
+                <td>
+                    <textarea name="" id="" cols="30" rows="2"></textarea>
+                </td>
+            </tr>
+        </ng-container>
+    </table>
+    <!-- traumatologia -->
+    <table id="mitable" style="font-size: 13px;">
+        <ng-container *ngFor="let examen of nomExaTraumatologia; let i=index">
+
+            <tr style="border-top: 1px solid black;">
+                <td style="width: 35px;">
+                    <div class="corner">
+                        &nbsp;{{examen.numeral}}
+                    </div>
+                </td>
+                <td style="border-right: 1px solid black; width: 392px;">
+                    {{examen.nombre}}
+                </td>
+                <td style="border-right: 1px solid black; width: 104px;">
+                    <ng-container>
+                        <p-radioButton name="glucosa1" value="Chicago" [(ngModel)]="glucosa" inputId="glucosa1">
+                        </p-radioButton> &nbsp;&nbsp;
+                        <p-radioButton name="glucosa1" value="Chicago" [(ngModel)]="glucosa" inputId="glucosa1">
+                        </p-radioButton>&nbsp;&nbsp;
+                        <p-radioButton name="glucosa1" value="Chicago" [(ngModel)]="glucosa" inputId="glucosa1">
+                        </p-radioButton>
+                    </ng-container>
+                </td>
+                <td>
+                    <textarea name="" id="" cols="30" rows="2"></textarea>
+                </td>
+            </tr>
+        </ng-container>
+    </table>
+    <!-- medicina general2 -->
+    <table id="mitable" style="font-size: 13px;">
+        <ng-container *ngFor="let examen of nomExaMedGeneral2; let i=index">
+            <tr style="border-top: 1px solid black;">
+                <td style="width: 35px;">
+                    <div class="corner">
+                        &nbsp;{{examen.numeral}}
+                    </div>
+                </td>
+                <td style="border-right: 1px solid black; width: 392px;">
+                    {{examen.nombre}}
+                </td>
+                <td style="border-right: 1px solid black; width: 104px;">
+                    <ng-container>
+                        <p-radioButton name="glucosa1" value="Chicago" [(ngModel)]="glucosa" inputId="glucosa1">
+                        </p-radioButton> &nbsp;&nbsp;
+                        <p-radioButton name="glucosa1" value="Chicago" [(ngModel)]="glucosa" inputId="glucosa1">
+                        </p-radioButton>&nbsp;&nbsp;
+                        <p-radioButton name="glucosa1" value="Chicago" [(ngModel)]="glucosa" inputId="glucosa1">
+                        </p-radioButton>
+                    </ng-container>
+                </td>
+                <td>
+                    <textarea name="" id="" cols="30" rows="2"></textarea>
+                </td>
+            </tr>
+        </ng-container>
+    </table>
+</p-card>

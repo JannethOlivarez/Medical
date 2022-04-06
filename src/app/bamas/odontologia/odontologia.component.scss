@@ -1,0 +1,26 @@
+.outerWrap {
+  position: relative;
+  z-index: 0;
+}
+
+.layer1 {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.superficieDientes {
+  border: 1px solid black;
+  width: 25px;
+  height: 25px;
+}
+
+.inputDiente {
+  width: 30px;
+}
+
+.dientes {
+  background-repeat: no-repeat;
+  height: 42px;
+  width: 42px;
+}

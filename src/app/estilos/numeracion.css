@@ -1,0 +1,78 @@
+table{
+    border-collapse: collapse;
+}
+.subt{
+    font-size:12px;
+    font-weight: bold;
+}
+
+#mitable {
+   
+    width: 100%;
+    border: 1px solid black;
+  }
+  
+  #mitable .mitr ,#mitable .mitd{
+    border: 1px solid black;
+    padding-left: 0;
+    padding-top: 0;
+  }
+
+  .cornertd{
+    padding-left: 0;
+    padding-top: 0;
+  }
+  
+  .bordeDerecho{
+      border-right:  1px solid black;
+  }
+  
+  
+  .corner{
+      width: 25px;
+      height: 25px;
+      background-image: url("/assets/layout/images/corner_numero.png");
+      background-repeat: no-repeat;
+  }
+  .cornerp{
+    width: 25px;
+    height: 25px;
+    background-image: url("/assets/layout/images/corner_numero.png");
+    background-repeat: no-repeat;
+    background-position: 0px 10px;
+}
+.cornerv{
+  width: 25px;
+  height: 25px;
+  background-image: url("/assets/layout/images/corner_numero.png");
+  background-repeat: no-repeat;
+  background-position: 0px 20px;
+}
+.altoCelda{
+  height: 60px;
+}
+
+
+.inputsinborde {
+  border: 0;
+}
+ 
+  input{
+      width: 70%
+  }
+  .imprimir{
+      display: none
+  }
+  .colorImprimir{
+    font-size:12px;
+    color: black
+    
+  }
+ 
+  .numeroREM{
+      width: 30px;
+  }
+  .nombre{
+    width: 350px;
+
+}
