@@ -68,7 +68,7 @@ export class AppMenuComponent implements OnInit {
                     {label: 'Otorrinolaringología', icon: 'pi pi-fw pi-prime', routerLink: ['utilities/icons']},
                     {label: 'Traumatología', icon: 'pi pi-fw pi-desktop', url: ['https://www.primefaces.org/primeflex/'], target: '_blank'},
                     {label: 'Medicina General', icon: 'pi pi-fw pi-prime', routerLink: ['utilities/icons']},
-                    {label: 'Odontología', icon: 'pi pi-fw pi-prime', routerLink: ['odontologia']},
+                    {label: 'Odontología', icon: 'pi pi-fw pi-prime', routerLink: ['utilities/icons']},
                     {label: 'Psicología', icon: 'pi pi-fw pi-prime', routerLink: ['psicologia']},
                     {label: 'Laboratorio clínico', icon: 'pi pi-fw pi-prime', routerLink: ['laboratorio']},
                 ]

@@ -158,6 +158,7 @@ import { FamiliaresComponent } from './bamas/familiares/familiares.component';
 import { MedidasYotrosDatosComponent } from './bamas/medidas-yotros-datos/medidas-yotros-datos.component';
 import { LaboratorioComponent } from './bamas/laboratorio/laboratorio.component';
 import { ExamenClinicoComponent } from './bamas/examen-clinico/examen-clinico.component';
+import { GeneralService } from './bamas/servicios/general.services';
 
 
 FullCalendarModule.registerPlugins([
@@ -309,7 +310,7 @@ FullCalendarModule.registerPlugins([
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},
         CountryService, CustomerService, EventService, IconService, NodeService,
-        PhotoService, ProductService, MenuService, BreadcrumbService, ConfigService
+        PhotoService, ProductService, MenuService, BreadcrumbService, GeneralService, ConfigService
     ],
     bootstrap: [AppComponent]
 })
