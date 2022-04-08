@@ -1,105 +1,145 @@
 <p-card>
-    <table id="mitable">
-        <tr>
-            <td style="text-align: center;" *ngFor="let diente of dientesArriba">
-                <img src="assets/demo/images/diente.png" alt=""> <br>
-                <span>{{diente}}</span>
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: center;" *ngFor="let diente of dientesAbajo">
-                <img src="assets/demo/images/diente.png" alt=""><br>
-                <span>{{diente}}</span>
-            </td>
-        </tr>
-    </table>
-    <div class="container">
-        <div class="container">
+    <br>
+    <!--Diaologo de Confirmacion-->
+    <p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000" rejectButtonStyleClass="p-button-text">
+    </p-confirmDialog>
+    <!--Tabla con los Dientes-->
+    <div class="grid">
+        <div class="col-12 md:col-6 lg:col-12 sm:col-3">
             <table id="mitable">
                 <tr>
-                    <td><img src="assets/demo/images/necesario.png" alt=""></td>
-                    <td><img src="assets/demo/images/otra_causa.png" alt=""><br></td>
-                    <td><img src="assets/demo/images/total.png" alt=""><br></td>
-                    <td><img src="assets/demo/images/realizado.png" alt=""><br></td>
-                    <td><img src="assets/demo/images/endodoncia.png" alt=""><br></td>
-                    <td><img src="assets/demo/images/corona.png" alt=""><br></td>
-                    <td><img src="assets/demo/images/extraccion_indicada.png" alt=""><br></td>
-                    <td><img src="assets/demo/images/fija.png" alt=""><br></td>
-                    <td><img src="assets/demo/images/perdida_caries.png" alt=""><br></td>
-                    <td><img src="assets/demo/images/removible.png" alt=""><br></td>
-                    <td><img src="assets/demo/images/caries.png" alt=""><br></td>
-                    <td><img src="assets/demo/images/implante_necesario.png" alt=""><br></td>
-                    <td><img src="assets/demo/images/implante_realizado.png" alt=""><br></td>
-                    <td><img src="assets/demo/images/diente.png" alt=""><br></td>
-                    <td><img src="assets/demo/images/carilla_necesaria.png" alt=""><br></td>
-                    <td><img src="assets/demo/images/carilla_realizada.png" alt=""><br></td>
+                    <td style="text-align: center;" *ngFor="let diente of listaObjArriba">
+                        <div *ngIf="diente.tratamientos != '[]'" class="dientes outerWrap" id="{{diente}}"
+                            (click)="establecerTratamiento(diente)"
+                            [style.backgroundImage]="'url(assets/demo/images/diente.png)'"
+                            style="margin-top: 20%; margin-left: 20%; margin-right: 20%;">
+                            <div class="dientes layer1" *ngFor="let tratamiento of diente.tratamientos"
+                                [style.zIndex]="tratamiento.index"
+                                [style.backgroundImage]="'url(assets/demo/images/'+tratamiento.imagen+'.png)'">
+                            </div>
+                        </div>
+                        <span>{{diente.diente}}</span>
+                        <div *ngIf="diente.diente==11" style="width: 50px"></div>
+                    </td>
                 </tr>
                 <tr>
-                    <td>Sellante Necesario</td>
-                    <td>Pérdida (otra causa)</td>
-                    <td>Prótesis Total</td>
-                    <td>Sellante Realizado</td>
-                    <td>Endodoncia</td>
-                    <td>Corona</td>
-                    <td>Extracción Indicada</td>
-                    <td>Prótesis Fija</td>
-                    <td>Obturado</td>
-                    <td>Pérdida por caries</td>
-                    <td>Prótesis Removible</td>
-                    <td>Caries</td>
-                    <td>Implante Necesario</td>
-                    <td>Implante Realizado</td>
-                    <td>Carilla Necesaria</td>
-                    <td>Carilla Realizada</td>
-
+                    <td style="text-align: center;" *ngFor="let diente of listaObjAbajo">
+                        <div *ngIf="diente.tratamientos != '[]'" class="dientes outerWrap" id="{{diente}}"
+                            (click)="establecerTratamiento(diente)"
+                            [style.backgroundImage]="'url(assets/demo/images/diente.png)'"
+                            style="margin-top: 20%; margin-left: 20%; margin-right: 20%;">
+                            <div class="dientes layer1" *ngFor="let tratamiento of diente.tratamientos"
+                                [style.zIndex]="tratamiento.index"
+                                [style.backgroundImage]="'url(assets/demo/images/'+tratamiento.imagen+'.png)'">
+                            </div>
+                        </div>
+                        <span>{{diente.diente}}</span>
+                    </td>
                 </tr>
             </table>
         </div>
-
-        <!-- <div class="col-md-6">
-                <div class="container">
-                    <p-table #dt1 [value]="customers1" dataKey="id" [rows]="10" [loading]="loading" [rowHover]="true"
-                        styleClass="p-datatable-gridlines" [paginator]="true"
-                        [globalFilterFields]="['name','country.name','representative.name','status']"
-                        responsiveLayout="scroll">
-                        <ng-template pTemplate="header">
-                            <tr>
-                                <th>
-                                    <div class="flex justify-content-between align-items-center">
-                                       N° Diente
-                                    </div>
-                                </th>
-                                <th>
-                                    <div class="flex justify-content-between align-items-center">
-                                       Diagnóstico
-                                    </div>
-                                </th>
-                                <th style="width: 8rem">
-                                    <div class="flex justify-content-between align-items-center">
-                                        Opciones
-                                    </div>
-                                </th>
-                            </tr>
-                        </ng-template>
-                        <ng-template pTemplate="body" let-customer>
-                            <tr>
-                                <td style="min-width: 6rem;">
-                                    0000
-                                </td>
-                                <td style="min-width: 14rem;">
-                                    05555
-                                </td>
-                                <td class="text-center" style="min-width: 6rem;">
-                                    <button pButton pRipple type="button" icon="pi pi-users"
-                                        class="p-button-rounded mr-2 mb-2"></button>
-                                    <button pButton pRipple type="button" icon="pi pi-pencil"
-                                        class="p-button-rounded mr-2 mb-2"></button>
-                                </td>
-                            </tr>
-                        </ng-template>
-                    </p-table>
-                </div>
-            </div> -->
-        <!-- </div> -->
     </div>
+    <!--Caras del diente-->
+    <div class="grid"
+        *ngIf="tratamientoSeleccionado && (tratamientoSeleccionado.imagen==NECESARIO || tratamientoSeleccionado.imagen==REALIZADO)">
+        <p-panel header="Mapa del Diente" class="col-12">
+            <div class="col-offset-5 col-1" style="margin: 1%;">
+                <table>
+                    <tr>
+                        <td></td>
+                        <td class="superficieDientes" (click)="seleccionadoLado('arriba')"
+                            [style.backgroundColor]="lados.arriba">
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="superficieDientes" (click)="seleccionadoLado('izquierda')"
+                            [style.backgroundColor]="lados.izquierda"></td>
+                        <td class="superficieDientes" (click)="seleccionadoLado('centro')"
+                            [style.backgroundColor]="lados.centro">
+                        </td>
+                        <td class="superficieDientes" (click)="seleccionadoLado('derecha')"
+                            [style.backgroundColor]="lados.derecha">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td class="superficieDientes" (click)="seleccionadoLado('abajo')"
+                            [style.backgroundColor]="lados.abajo">
+                        </td>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>
+        </p-panel>
+    </div>
+    <br>
+    <!--Splitter Tratamientos y Detalles-->
+    <p-splitter>
+        <ng-template pTemplate>
+            <p-panel header="Tratamientos" class="col-12">
+                <div class="container" style="margin: 2%;">
+                    <div class="row">
+                        <div class="grid">
+                            <div class="col-6" *ngFor="let tratamiento of tratamientosOdontograma"
+                                (click)="selecionarTratamiento(tratamiento)"
+                                [style.backgroundColor]="tratamiento.seleccionado">
+                                <img [src]="'assets/demo/images/'+tratamiento.imagen+'.png'"
+                                    alt="{{tratamiento.nombre}}" style="width: 30px ;height: 30px">
+                                <label style="margin: 10%;">{{tratamiento.nombre}}</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <br>
+            </p-panel>
+        </ng-template>
+        <ng-template pTemplate>
+            <p-panel header="Detalles" class="col-12">
+                <p-table #dt1 [value]="listaTratamientosMostrar" dataKey="id" [rows]="5" [loading]="loading"
+                    [rowHover]="true" styleClass="p-datatable-gridlines" [paginator]="true"
+                    [globalFilterFields]="['name','country.name','representative.name','status']"
+                    responsiveLayout="scroll">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th style="width: 7rem;">
+                                <div class="flex justify-content-between align-items-center">
+                                    N° diente
+                                </div>
+                            </th>
+                            <th>
+                                <div class="flex justify-content-between align-items-center">
+                                    Diagnóstico
+                                </div>
+                            </th>
+                            <th style="width: 8rem">
+                                <div class="flex justify-content-between align-items-center">
+                                    Opciones
+                                </div>
+                            </th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-diente>
+                        <tr>
+                            <td style="min-width: 6rem;">
+                                {{diente.diente}}
+                            </td>
+                            <td style="min-width: 14rem;">
+                                {{diente.tratamiento.nombre}}
+                            </td>
+                            <td class="text-center" style="min-width: 6rem;">
+
+                                <button pButton pRipple type="button" icon="pi pi-trash "
+                                    class="p-button-rounded p-button-danger mr-2 mb-2"
+                                    (click)="confirmacionEliminacionTratamimento(diente)"></button>
+                            </td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </p-panel>
+
+
+        </ng-template>
+    </p-splitter>
 </p-card>
