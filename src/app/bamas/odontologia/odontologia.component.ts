@@ -1,15 +1,17 @@
-import { Component, Input, OnInit, SimpleChange } from '@angular/core';
-import { ConfirmationService, Message,MessageService } from 'primeng/api';
+import { Component, Input, OnChanges, OnInit, SimpleChange } from '@angular/core';
+import { ConfirmationService, Message,MessageService, SelectItem } from 'primeng/api';
 import { Customer } from 'src/app/demo/domain/customer';
 import { CustomerService } from 'src/app/demo/service/customerservice';
 import { Constantes } from '../constantes';
+import { CatalogoService } from '../servicios/catalogo.services';
+import { OdontogramaService } from '../servicios/odontograma.service';
 
 
 @Component({
     selector: 'app-odontologia',
     templateUrl: './odontologia.component.html',
     styleUrls: ['./odontologia.component.scss', '../../estilos/numeracion.css'],
-    providers:[ConfirmationService, MessageService]
+    providers:[ConfirmationService, MessageService, OdontogramaService]
 })
 export class OdontologiaComponent implements OnInit {
     dientesArriba = [18, 17, 16, 15, 14, 13, 12, 11, 21, 22, 23, 24, 25, 26, 27, 28];
@@ -39,6 +41,8 @@ export class OdontologiaComponent implements OnInit {
 
     ];
     
+    @Input() rem ;
+
     //Arrays u Objetos 
     listaObjArriba = [];
     listaObjAbajo = [];
@@ -48,7 +52,9 @@ export class OdontologiaComponent implements OnInit {
     tratamientosSelecionado = []
     customers1: Customer[];
     msgs: Message[] = [];
+    detalles = [];
     lados = { arriba: null, abajo: null, derecha: null, izquierda: null, centro: null };
+    concepto: SelectItem[] = [{ value: null, label: "SELECCIONE" }];
 
     //Variables tipo Any
     ladoSelecionado:any;
@@ -57,6 +63,7 @@ export class OdontologiaComponent implements OnInit {
     dienteSeleccionadoAux: any;
     tratamientoSeleccionadoAux: any ;
     tratamientoSeleccionado: any;
+    odontograma:any;
 
     //Variables Bool
     banderaEditarTratamiento = false;
@@ -65,21 +72,31 @@ export class OdontologiaComponent implements OnInit {
     loading: boolean = true;
     display: boolean;
 
+    //Variables Asignadas
     colorSelecionado = "#FACC2E";
     REALIZADO = "obturado";
     NECESARIO = "caries";
+    catalogueDef= 81;
 
-    constructor(private customerService: CustomerService,private confirmationService: ConfirmationService, private messageService: MessageService) { }
+    constructor( private _odontogramaService: OdontogramaService,private _catalogoService: CatalogoService,private customerService: CustomerService,private confirmationService: ConfirmationService, private messageService: MessageService) { }
     ngOnInit() {
+        this.odontograma = {}
         this.customerService.getCustomersLarge().then(customers => {
             this.customers1 = customers;
             this.loading = false;
-
             // @ts-ignore
             this.customers1.forEach(customer => customer.date = new Date(customer.date));
         });
         this.generarDientesNuevo();
+        this.cargarCatalogos();
+        this.cargarOdontograma();
     }
+    // ngOnChanges(changes: { [propKey: string]: SimpleChange }) {
+    //     this.msgs = [];
+    //     if (this.rem != null) {
+    //         this.cargarOdontograma();
+    //     }
+    // }
     generarDientesNuevo() {
         this.dientesArriba.forEach(x => {
             let diente = {
@@ -127,6 +144,16 @@ export class OdontologiaComponent implements OnInit {
                 this.agregarTratamiento(diente, tratamiento);
             }
         }   
+    }
+    cargarCatalogos(banderaEdicion = 0) {
+        this._catalogoService.getCatalogos([this.catalogueDef])
+            .subscribe((catalogos: any[]) => {
+                catalogos.filter(x => x.padreId == this.catalogueDef).forEach(x => {
+                    this.concepto.push({ label: x.nombre, value: x.id })
+                });
+            }, (err: any) => {
+                ///this.msgs.push({ severity: 'error', summary: 'Error', detail: 'No se pudo consultar la lista de Catalogos.' }),
+            });
     }
     agregarTratamiento(diente = null, tratamiento = null, detalle = null) {
         this.banderaEditarTratamiento = false;
@@ -225,6 +252,70 @@ export class OdontologiaComponent implements OnInit {
                 reject: () => {
                    //realizar cualquier accion al rechazar el eliminado.
                 }
+            });
+    }
+    dienteCargar(x) {
+        x.tratamientos = JSON.parse(x.tratamientos);
+        return x;
+    }
+    cargarOdontograma() {
+        this.tratamientoSeleccionado = null;
+        this.detalles = [];
+        this._odontogramaService.getByRem(1)
+            .subscribe((odontograma: any) => {
+                let detalles = []
+                this.listaObjArriba = []
+                this.listaObjAbajo = []
+                this.odontograma=odontograma.odontograma
+                if (odontograma.detalle != null) {
+                    this.dientesArriba.forEach(x => {
+                        let dienteEncontrado = odontograma.detalle.find(diente => diente.diente == x);
+                        if (dienteEncontrado) {
+                            this.listaObjArriba.push(this.dienteCargar(dienteEncontrado));
+                        }
+                    })
+                    this.dientesAbajo.forEach(x => {
+                        let dienteEncontrado = odontograma.detalle.find(diente => diente.diente == x);
+                        if (dienteEncontrado) {
+                           
+                            this.listaObjAbajo.push(this.dienteCargar(dienteEncontrado));
+                        }
+                    })
+                    this.detalleTratamientosGeneral();
+                } else {
+                    this.generarDientesNuevo()
+                    this.odontograma = {}
+                }
+            }, (err: any) => this.msgs.push({ severity: 'error', summary: 'Error', detail: 'No se pudo consultar la lista de Registros.' }));
+
+
+    }
+    dienteGuardar(x) {
+        let diente = Object.assign({}, x);
+        diente.tratamientos = JSON.stringify(diente.tratamientos)
+        return diente;
+    }
+    guardarOdontrograma() {
+        this.odontograma.remId = 1;
+        let odontograma = {
+            odontograma: this.odontograma,
+            detalle: []
+        }
+        this.listaObjArriba.forEach(x => {
+            odontograma.detalle.push(this.dienteGuardar(x));
+        });
+        this.listaObjAbajo.forEach(x => {
+            odontograma.detalle.push(this.dienteGuardar(x));
+        });
+        //let tratamientosGuardar = []
+        this.msgs=[]
+        this._odontogramaService.save(odontograma)
+            .subscribe((registros: any) => {
+                this.cargarOdontograma()
+                this.msgs.push({severity:'success', summary:'Sadisfactoriamente', detail:'Se a Guardado'});
+            }, (err: any) => {
+                this.msgs.push({severity:'error', summary:"error", detail: 'Error'});
+                console.log(err)
             });
     }
 }

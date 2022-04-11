@@ -142,4 +142,71 @@
 
         </ng-template>
     </p-splitter>
+    <br>
+    <!--Tabla -->
+    <table id="mitable" style="margin-left: -9;">
+        <tr class="mitr">
+            <td style="font-family:Arial">P.F S I</td>
+            <td style="font-family:Arial"> <input type="text" name="pfsi" [(ngModel)]="odontograma.pfsi"></td>
+            <td style="font-family:Arial">P.T S I</td>
+            <td> <input type="text" name="ptsi" [(ngModel)]="odontograma.ptsi"></td>
+        </tr>
+        <tr class="mitr">
+            <td style="font-family:Arial">P.R S I</td>
+            <td> <input type="text" name="prsi" [(ngModel)]="odontograma.prsi"></td>
+            <td style="font-family:Arial">Tartrectomía S I</td>
+            <td> <input type="text" name="tartrectomiasi" [(ngModel)]="odontograma.tartrectomiasi"></td>
+        </tr>
+        <tr class="mitr">
+            <td colspan="4">
+                <div class="ui-g">
+                    <div style="font-family:Arial" class="ui-g-4">P.F.= Prótesis Fija</div>
+                    <div style="font-family:Arial" class="ui-g-4">P.R.= Prótesis Removible</div>
+                    <div style="font-family:Arial" class="ui-g-4">P.T.= Prótesis Total</div>
+                    <div style="font-family:Arial" class="ui-g-4">-Piezas susceptibles Usar lápiz azul-</div>
+                    <div style="font-family:Arial" class="ui-g-4">-Piezas que no se pueden arreglar.Use lápiz rojo-
+                    </div>
+                    <div style="font-family:Arial" class="ui-g-4">-Piezas que faltan. Usar lápiz negro-</div>
+                    <div style="font-family:Arial" class="ui-g-12">
+                        P.F.= Registrar piezas pilares en azul y en rojo reemplazadas <br>
+                        P.R.= Registrar en azul placa reemplazada<br>
+                        P.F.= Marcar con EQUIS (X) la prótesis total reemplazada y si son las dos en ambos
+                        cuadros
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr class="mitr">
+            <td colspan="2">
+                <label style="font-family:Arial" class="form-control-label" id="observaciones9"
+                    for="inputSuccess">Observaciones: Prótesis
+                    Articulación - Cálculos- Pigmentación - Versiones - Enclas </label>
+                <textarea maxlength="500" style="resize:none;width: 100%;" rows="3" name="observaciones"
+                    [(ngModel)]="odontograma.observaciones"></textarea>
+            </td>
+            <td colspan="2" >
+                <label  style="font-family:Arial"class="form-control-label col-3" id="observaciones9" for="inputSuccess">Concepto</label>
+                <p-dropdown filter="true" [options]="concepto" [ngClass]="{'ng-dirty ng-invalid' : !conceptoId.valid}"
+                    name="conceptoId" #conceptoId="ngModel" [(ngModel)]="odontograma.conceptoId" required></p-dropdown>
+            </td>
+        </tr>
+        <tr class="mitr">
+            <td colspan="2">
+                <label style="font-family:Arial" class="form-control-label" id="observaciones9"
+                    for="inputSuccess">Informe Rx Panorámica</label>
+                <textarea maxlength="500" style="resize:none;width: 100%;" rows="3" name="informePanoramica"
+                    [(ngModel)]="odontograma.informePanoramica"></textarea>
+            </td>
+            <td colspan="2">
+                <label style="font-family:Arial" class="form-control-label" id="observaciones9"
+                    for="inputSuccess">Recomendaciones</label>
+                <textarea maxlength="500" style="resize:none;width: 100%;" rows="3" name="recomendacion"
+                    [(ngModel)]="odontograma.recomendacion"></textarea>
+            </td>
+        </tr>
+    </table>
+    <p-divider class="col-12"></p-divider>
+    <div class="col-offset-10">
+        <button pButton type="button" style="font-size: medium;" label="Guardar" class="p-button-success" (click)="guardarOdontrograma()"></button>
+    </div>
 </p-card>
