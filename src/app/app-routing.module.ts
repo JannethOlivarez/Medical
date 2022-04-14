@@ -75,7 +75,7 @@ import { OdontologiaComponent } from './bamas/odontologia/odontologia.component'
                     {path: 'blocks', component: BlocksComponent},
                     {path: 'clinico', component: ClinicoComponent},
                     {path: 'clinico/rem', component: RemComponent},
-                    {path: 'usuarios', component: UsuariosComponent},
+                    {path: 'usuarios/:tipo', component: UsuariosComponent},
                     {path: 'roles-permisos', component: RolesPermisosComponent},
                     {path: 'familiar', component: FamiliaresComponent},
                     {path: 'medidasYotrosDatos', component: MedidasYotrosDatosComponent},

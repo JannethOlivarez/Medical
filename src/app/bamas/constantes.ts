@@ -87,8 +87,22 @@ export class Constantes {
         masculino: 9
     };
     labelSeleccione = 'SELECCIONE';
+    tamanoPagina=100;
     mensajeExitoSummary = 'Éxito';
     mensajeExitoDetail = 'Registro actualizado correctamente.';
     mensajeErrorSummary = 'Error';
     mensajeErrorDetail = 'No se pudo actualizar el registro.';
+    permisosPantallas = [
+        { url: "general", moduloId: 5, tituloModulo: "MEDICINA GENERAL" },
+        { url: "evaluador", moduloId: 6, tituloModulo: "EVALUADOR" },
+        { url: "auxiliar", moduloId: 9, tituloModulo: "AUXILIAR" },
+        {url:"traumatologia",moduloId:7, tituloModulo:"TRAUMATOLOGÍA"},
+        { url: "psicologia", moduloId: 1, tituloModulo: "PSICOLOGÍA" },
+        { url: "medidasDatos", moduloId: 2, tituloModulo: "MEDIDAS Y OTROS DATOS - EFERMERÍA", especialidad: "enfermeria" },
+        { url: "medidasDatos", moduloId: 2, tituloModulo: "MEDIDAS Y OTROS DATOS - AUDIOMETRÍA", especialidad: "audiometria" },
+        { url: "medidasDatos", moduloId: 2, tituloModulo: "MEDIDAS Y OTROS DATOS - OFTALMOLOGÍA", especialidad: "oftalmologia" },
+        { url: "odontologia", moduloId: 3, tituloModulo: "ODONTOLOGÍA" },
+        { url: "laboratorio", moduloId: 4, tituloModulo: "LABORATORIO" },
+        {url:"otorrinolaringologia", moduloId: 8, tituloModulo: "OTORRINOLARINGOLOGÍA"}
+    ]
 }

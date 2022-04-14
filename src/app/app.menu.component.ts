@@ -19,8 +19,8 @@ export class AppMenuComponent implements OnInit {
                     {
                         label: 'Usuarios', icon: 'pi pi-fw pi-compass', routerLink: ['/utilities'],
                         items: [
-                            {label: 'Pacientes', icon: 'pi pi-fw pi-prime', routerLink: ['usuarios']},
-                            {label: 'Especialistas', icon: 'pi pi-fw pi-prime', routerLink: ['usuarios']},
+                            {label: 'Pacientes', icon: 'pi pi-fw pi-prime', routerLink: ['usuarios/militar']},
+                            {label: 'Especialistas', icon: 'pi pi-fw pi-prime', routerLink: ['usuarios/doctor']},
                         ]
                     },
                     {label: 'Roles y permisos', icon: 'pi pi-fw pi-check-square', routerLink: ['/roles-permisos']},

@@ -42,6 +42,7 @@ export class OdontologiaComponent implements OnInit {
     ];
     
     @Input() rem ;
+    constantes = new Constantes();
 
     //Arrays u Objetos 
     listaObjArriba = [];
@@ -76,7 +77,9 @@ export class OdontologiaComponent implements OnInit {
     colorSelecionado = "#FACC2E";
     REALIZADO = "obturado";
     NECESARIO = "caries";
-    catalogueDef= 81;
+    catalogueDef= this.constantes.catalogoIds.conceptoOdontologia;
+
+    
 
     constructor( private _odontogramaService: OdontogramaService,private _catalogoService: CatalogoService,private customerService: CustomerService,private confirmationService: ConfirmationService, private messageService: MessageService) { }
     ngOnInit() {
@@ -91,12 +94,6 @@ export class OdontologiaComponent implements OnInit {
         this.cargarCatalogos();
         this.cargarOdontograma();
     }
-    // ngOnChanges(changes: { [propKey: string]: SimpleChange }) {
-    //     this.msgs = [];
-    //     if (this.rem != null) {
-    //         this.cargarOdontograma();
-    //     }
-    // }
     generarDientesNuevo() {
         this.dientesArriba.forEach(x => {
             let diente = {

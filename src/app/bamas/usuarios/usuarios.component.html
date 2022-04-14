@@ -1,274 +1,412 @@
-<div class="card p-fluid">
-    <h5>Datos personales:</h5>
-    <div class="p-formgrid grid col-12">
-        <div class="field col-3">
-            <label htmlFor="name2">Cédula:</label>
-            <input pInputText id="name2" type="text" />
-        </div>
-        <div class="field col-3">
-            <label htmlFor="email2">Nombres:</label>
-            <input pInputText id="email2" type="text" />
-        </div>
-        <div class="field col-3">
-            <label htmlFor="email2">Apellido paterno</label>
-            <input pInputText id="email2" type="text" />
-        </div>
-        <div class="field col-3">
-            <label htmlFor="email2">Apellido materno</label>
-            <input pInputText id="email2" type="text" />
-        </div>
-        <div class="field col-3">
-            <label htmlFor="name2">Estado civil:</label>
-            <!-- <p-dropdown filter="true" name="estadoCivilId"required></p-dropdown> -->
-            
-        </div>
-        <div class="field col-3">
-            <label htmlFor="email2">Sexo:</label>
-            <p-dropdown filter="true" name="sexo" required></p-dropdown>
-        </div>
-        <div class="field col-3">
-            <label htmlFor="email2">Raza</label>
-            <p-dropdown filter="true" name="estadoCivilId" required></p-dropdown>
-        </div>
-        <div class="field col-3">
-            <label htmlFor="email2">Teléfono</label>
-            <input pInputText id="email2" type="text" />
-        </div>
-        <div class="field col-3">
-            <label htmlFor="name2">Dirección:</label>
-            <input pInputText id="name2" type="text" />
-        </div>
-        <div class="field col-3">
-            <label htmlFor="email2">Fecha nacimiento:</label>
-            <p-calendar inputId="calendar" [(ngModel)]="value5"></p-calendar>
-        </div>
-        <div class="field col-3">
-            <label htmlFor="email2">Edad</label>
-            <input pInputText id="email2" type="text" />
-        </div>
-        <div class="field col-3">
-            <label htmlFor="email2">Lugar Nacimiento</label>
-            <input pInputText id="email2" type="text" />
-        </div>
-    </div>
-</div>
-<div class="card p-fluid">
-    <h5>Datos militares:</h5>
-    <div class="p-formgrid grid col-12">
-        <div class="field col-3">
-            <label htmlFor="name2">Grado:</label>
-            <p-dropdown filter="true" name="estadoCivilId" required></p-dropdown>
-        </div>
-        <div class="field col-3">
-            <label htmlFor="email2">Sevicio militar:</label>
-            <input pInputText id="email2" type="text" />
-        </div>
-        <div class="field col-3">
-            <label htmlFor="email2">Reparto:</label>
-            <input pInputText id="email2" type="text" />
-        </div>
-        <div class="field col-3">
-            <label htmlFor="email2">Sección</label>
-            <input pInputText id="email2" type="text" />
-        </div>
-        <div class="field col-3">
-            <label htmlFor="name2">Especialidad:</label>
-            <input pInputText id="name2" type="text" />
-        </div>
-        <div class="field col-3">
-            <label htmlFor="email2">Especialidad de vuelo:</label>
-            <input pInputText id="email2" type="text" />
-        </div>
-        <div class="field col-3">
-            <label htmlFor="email2">Cargo actual</label>
-            <p-dropdown filter="true" name="estadoCivilId" required></p-dropdown>
-        </div>
-        <div class="field col-3">
-            <label htmlFor="email2">clasificación</label>
-            <p-dropdown filter="true" name="estadoCivilId" required></p-dropdown>
-        </div>
-        <div class="field col-3">
-            <label htmlFor="name2">Material de vuelo:</label>
-            <p-dropdown filter="true" name="estadoCivilId" required></p-dropdown>
-        </div>
-        <div class="field col-3">
-            <label htmlFor="email2">Equipo de vuelo:</label>
-            <p-dropdown filter="true" name="estadoCivilId" required></p-dropdown>
-        </div>
-        <div class="field col-3">
-            <label htmlFor="email2">Horas de vuelo</label>
-            <input pInputText id="email2" type="text" />
-        </div>
-        <div class="field col-3">
-            <label htmlFor="email2">Accidentes e incidentes</label>
-            <input pInputText id="email2" type="text" />
+<!-- Mensaje de pantalla -->
+<p-toast></p-toast>
+<form #myform="ngForm" (ngSubmit)="myform.valid && guardar()">
+    <div *ngIf="segmentos" class="card p-fluid">
+
+        <!-- DATOS PERSONALES -->
+        <h5>Datos personales:</h5>
+        <div class="p-formgrid grid col-12">
+            <div class="field col-3">
+                <label for="cedula">Cédula:</label>
+                <input pInputText id="cedula" name="cedula" maxlength="10" #cedula="ngModel"
+                    [ngClass]="{'ng-dirty ng-invalid' : myform.submitted  && !cedula.valid}" type="text"
+                    [(ngModel)]="registro.cedula" required />
+                <small *ngIf="myform.submitted  && !cedula.valid" class="p-error">Campo obligatorio.</small>
+            </div>
+            <div class="field col-3">
+                <label for="nombres">Nombres:</label>
+                <input pInputText id="nombres" #nombres="ngModel" name="nombres" type="text"
+                    [ngClass]="{'ng-dirty ng-invalid' : myform.submitted  && !nombres.valid}"
+                    [(ngModel)]="registro.nombres" required />
+                <small *ngIf="myform.submitted  && !nombres.valid" class="p-error">Campo obligatorio.</small>
+            </div>
+            <div class="field col-3">
+                <label>Apellido paterno</label>
+                <input pInputText name="apellidoPaterno" type="text" #apellidoPaterno="ngModel"
+                    [ngClass]="{'ng-dirty ng-invalid' : myform.submitted  && !apellidoPaterno.valid}"
+                    [(ngModel)]="registro.apellidoPaterno" required />
+                <small *ngIf="myform.submitted  && !apellidoPaterno.valid" class="p-error">Campo obligatorio.</small>
+            </div>
+            <div class="field col-3">
+                <label>Apellido materno</label>
+                <input pInputText name="apellidoMaterno" type="text" #apellidoMaterno="ngModel"
+                    [ngClass]="{'ng-dirty ng-invalid' : myform.submitted  && !apellidoMaterno.valid}"
+                    [(ngModel)]="registro.apellidoMaterno" required />
+                <small *ngIf="myform.submitted  && !apellidoMaterno.valid" class="p-error">Campo obligatorio.</small>
+            </div>
+            <div class="field col-3">
+                <label>Estado civil:</label>
+                <p-dropdown filter="true" name="estadoCivilId" [options]="estadoCivil" #estadoCivilId="ngModel"
+                    [ngClass]="{'ng-dirty ng-invalid' : myform.submitted  && !estadoCivilId.valid}"
+                    [(ngModel)]="registro.estadoCivilId" required></p-dropdown>
+                <small *ngIf="myform.submitted  && !estadoCivilId.valid" class="p-error">Campo obligatorio.</small>
+            </div>
+            <div class="field col-3">
+                <label>Sexo:</label>
+                <p-dropdown filter="true" name="sexo" [options]="sexo" #sexoId="ngModel"
+                    [ngClass]="{'ng-dirty ng-invalid' : myform.submitted  && !sexoId.valid}"
+                    [(ngModel)]="registro.sexoId" required>
+                </p-dropdown>
+                <small *ngIf="myform.submitted  && !sexoId.valid" class="p-error">Campo obligatorio.</small>
+            </div>
+            <div class="field col-3">
+                <label>Raza</label>
+                <p-dropdown filter="true" name="raza" [options]="raza" #razaId="ngModel"
+                    [ngClass]="{'ng-dirty ng-invalid' : myform.submitted  && !razaId.valid}"
+                    [(ngModel)]="registro.razaId" required>
+                </p-dropdown>
+                <small *ngIf="myform.submitted  && !razaId.valid" class="p-error">Campo obligatorio.</small>
+            </div>
+            <div class="field col-3">
+                <label>Teléfono</label>
+                <p-inputNumber name="telefono" [useGrouping]="false" type="text" #telefono="ngModel"
+                    [ngClass]="{'ng-dirty ng-invalid' : myform.submitted  && !telefono.valid}"
+                    [(ngModel)]="registro.telefono" required></p-inputNumber>
+                <small *ngIf="myform.submitted  && !telefono.valid" class="p-error">Campo obligatorio.</small>
+            </div>
+            <div class="field col-3">
+                <label>Dirección:</label>
+                <input pInputText name="direccion" type="text" #direccion="ngModel"
+                    [ngClass]="{'ng-dirty ng-invalid' : myform.submitted  && !direccion.valid}"
+                    [(ngModel)]="registro.direccion" required />
+                <small *ngIf="myform.submitted  && !direccion.valid" class="p-error">Campo obligatorio.</small>
+            </div>
+            <div class="field col-3">
+                <label>Fecha nacimiento:</label>
+                <p-calendar inputId="calendar" name="fechaNacimiento" [showIcon]="true" #fechaNacimiento="ngModel"
+                    [ngClass]="{'ng-dirty ng-invalid' : myform.submitted  && !fechaNacimiento.valid}"
+                    (ngModelChange)="obtenerfechas($event)" [(ngModel)]="registro.fechaNacimiento" required>
+                </p-calendar>
+                <small *ngIf="myform.submitted  && !fechaNacimiento.valid" class="p-error">Campo obligatorio.</small>
+            </div>
+            <div class="field col-3">
+                <label>Edad</label>
+                <input pInputText name="edad" type="text" readonly="true" value="{{registro.edadCalculada}}" />
+            </div>
+            <div class="field col-3">
+                <label>Lugar Nacimiento</label>
+                <input pInputText name="lugarNacimiento" type="text" #lugarNacimiento="ngModel"
+                    [ngClass]="{'ng-dirty ng-invalid' : myform.submitted  && !lugarNacimiento.valid}"
+                    [(ngModel)]="registro.lugarNacimiento" required />
+                <small *ngIf="myform.submitted  && !lugarNacimiento.valid" class="p-error">Campo obligatorio.</small>
+            </div>
         </div>
     </div>
-</div>
-<div class="card p-fluid">
-    <h5>Datos de especialidad:</h5>
-    <div class="p-formgrid grid">
-        <div class="field col-3">
-            <label htmlFor="name2">Especialidades:</label>
-            <input pInputText id="name2" type="text" />
+
+    <!-- DATOS MILITARES -->
+    <div class="card p-fluid" *ngIf="tipo=='militar'&& segmentos">
+        <h5>Datos militares:</h5>
+        <div class="p-formgrid grid col-12">
+            <div class="field col-3">
+                <label>Grado:</label>
+                <p-dropdown filter="true" name="gradoId" [options]="grado" #gradoId="ngModel"
+                    [ngClass]="{'ng-dirty ng-invalid' : myform.submitted  && !gradoId.valid}"
+                    [(ngModel)]="registro.gradoId" required>
+                </p-dropdown>
+                <small *ngIf="myform.submitted  && !gradoId.valid" class="p-error">Campo obligatorio.</small>
+            </div>
+            <div class="field col-3">
+                <label>Sevicio militar:</label>
+                <p-inputNumber name="servicioMilitar" [useGrouping]="false" type="text" #servicioMilitar="ngModel"
+                    [ngClass]="{'ng-dirty ng-invalid' : myform.submitted  && !servicioMilitar.valid}"
+                    [(ngModel)]="registro.servicioMilitar" required>
+                </p-inputNumber>
+                <small *ngIf="myform.submitted  && !servicioMilitar.valid" class="p-error">Campo obligatorio.</small>
+            </div>
+            <div class="field col-3">
+                <label>Reparto:</label>
+                <input pInputText name="reparto" type="text" #reparto="ngModel"
+                    [ngClass]="{'ng-dirty ng-invalid' : myform.submitted  && !reparto.valid}"
+                    [(ngModel)]="registro.reparto" required />
+                <small *ngIf="myform.submitted  && !reparto.valid" class="p-error">Campo obligatorio.</small>
+            </div>
+            <div class="field col-3">
+                <label>Sección</label>
+                <input pInputText name="seccion" type="text" #seccion="ngModel"
+                    [ngClass]="{'ng-dirty ng-invalid' : myform.submitted  && !seccion.valid}"
+                    [(ngModel)]="registro.seccion" required />
+                <small *ngIf="myform.submitted  && !seccion.valid" class="p-error">Campo obligatorio.</small>
+            </div>
+            <div class="field col-3">
+                <label>Especialidad:</label>
+                <input pInputText name="especialidad" type="text" #especialidad="ngModel"
+                    [ngClass]="{'ng-dirty ng-invalid' : myform.submitted  && !especialidad.valid}"
+                    [(ngModel)]="registro.especialidad" required />
+                <small *ngIf="myform.submitted  && !especialidad.valid" class="p-error">Campo obligatorio.</small>
+            </div>
+            <div class="field col-3">
+                <label>Especialidad de vuelo:</label>
+                <input pInputText name="especialidadVuelo" type="text" #especialidadVueloT="ngModel"
+                    [ngClass]="{'ng-dirty ng-invalid' : myform.submitted  && !especialidadVueloT.valid}"
+                    [(ngModel)]="registro.especialidadVuelo" required />
+                <small *ngIf="myform.submitted  && !especialidadVueloT.valid" class="p-error">Campo obligatorio.</small>
+            </div>
+            <div class="field col-3">
+                <label>Cargo actual</label>
+                <p-dropdown filter="true" name="cargoId" [options]="especialidadVuelo" #cargoActualId="ngModel"
+                    [ngClass]="{'ng-dirty ng-invalid' : myform.submitted  && !cargoActualId.valid}"
+                    [(ngModel)]="registro.cargoActualId" required></p-dropdown>
+                <small *ngIf="myform.submitted  && !cargoActualId.valid" class="p-error">Campo obligatorio.</small>
+            </div>
+            <div class="field col-3">
+                <label>Clasificación</label>
+                <p-dropdown filter="true" name="clasificacionId" [options]="clasificacion" #clasificacionId="ngModel"
+                    [ngClass]="{'ng-dirty ng-invalid' : myform.submitted  && !clasificacionId.valid}"
+                    [(ngModel)]="registro.clasificacionId" required></p-dropdown>
+                <small *ngIf="myform.submitted  && !clasificacionId.valid" class="p-error">Campo obligatorio.</small>
+            </div>
+            <div class="field col-3">
+                <label>Material de vuelo:</label>
+                <p-dropdown filter="true" name="materialVueloId" [options]="materialVuelo" #materialVueloId="ngModel"
+                    [ngClass]="{'ng-dirty ng-invalid' : myform.submitted  && !materialVueloId.valid}"
+                    (ngModelChange)="cargarAviones($event)" [(ngModel)]="registro.materialVueloId" required>
+                </p-dropdown>
+                <small *ngIf="myform.submitted  && !materialVueloId.valid" class="p-error">Campo obligatorio.</small>
+            </div>
+            <div class="field col-3">
+                <label>Equipo de vuelo:</label>
+                <p-dropdown filter="true" name="avionesId" [options]="aviones" #avionId="ngModel"
+                    [ngClass]="{'ng-dirty ng-invalid' : myform.submitted  && !avionId.valid}"
+                    [disabled]="registro.materialVueloId == null" [(ngModel)]="registro.avionId" required></p-dropdown>
+                <small *ngIf="myform.submitted  && !avionId.valid" class="p-error">Campo obligatorio.</small>
+            </div>
+            <div class="field col-3">
+                <label>Horas de vuelo</label>
+                <p-inputNumber id="email2" type="text" [useGrouping]="false" name="horasVuelo" #horasVuelo="ngModel"
+                    [ngClass]="{'ng-dirty ng-invalid' : myform.submitted  && !horasVuelo.valid}"
+                    [(ngModel)]="registro.horasVuelo" required>
+                </p-inputNumber>
+                <small *ngIf="myform.submitted  && !horasVuelo.valid" class="p-error">Campo obligatorio.</small>
+            </div>
+            <div class="field col-3">
+                <label>Accidentes e incidentes</label>
+                <input pInputText id="email2" type="text" name="tieneAccidentes"
+                    [(ngModel)]="registro.tieneAccidentes" />
+            </div>
         </div>
-        <div class="field col-3">
-            <label htmlFor="email2">Roles y permisos:</label>
-            <p-dropdown filter="true" name="estadoCivilId" required></p-dropdown>
-        </div>
-        <div class="field col-3">
-            <table>
-                <td>Activo&nbsp;&nbsp;&nbsp;</td>
-                <td>
-                    <p-checkbox binary="true"></p-checkbox>
-                </td>
-            </table>
+        <div class="grid">
+            <div class="col-offset-8 col-2">
+                <button pButton pRipple type="button" label="Cancelar" icon="pi pi-times"
+                    class="p-button-rounded mr-2 mb-2 p-button-secondary" (click)="cancelarAccion()">
+                </button>
+            </div>
+            <div class="col-2">
+                <button pButton type="submit" label="Guardar" icon="pi pi-check"
+                    class="p-button-rounded mr-2 mb-2 p-button-success">
+                </button>
+            </div>
         </div>
     </div>
-</div>
-<!-- TABLA DE PACIENTES -->
-<div class="col-12">
-    <div class="card">
-        <p-table #dt1 [value]="customers1" dataKey="id" [rows]="10" [loading]="loading" [rowHover]="true"
-            styleClass="p-datatable-gridlines" [paginator]="true"
-            [globalFilterFields]="['name','country.name','representative.name','status']" responsiveLayout="scroll">
-            <ng-template pTemplate="header">
-                <tr>
-                    <th>
-                        <div class="flex justify-content-between align-items-center">
-                            Cédula
-                        </div>
-                    </th>
-                    <th>
-                        <div class="flex justify-content-between align-items-center">
-                            Grado
-                        </div>
-                    </th>
-                    <th>
-                        <div class="flex justify-content-between align-items-center">
-                            Nombres
-                        </div>
-                    </th>
-                    <th>
-                        <div class="flex justify-content-between align-items-center">
-                            Sexo
-                        </div>
-                    </th>
-                    <th>
-                        <div class="flex justify-content-between align-items-center">
-                            Teléfono
-                        </div>
-                    </th>
-                    <th style="width: 8rem">
-                        <div class="flex justify-content-between align-items-center">
-                            Opciones
-                        </div>
-                    </th>
-                </tr>
+
+    <!-- DATOS DE ESPECIALIDAD -->
+    <div class="card p-fluid" *ngIf="tipo=='doctor' && segmentos">
+        <h5>Datos de especialidad:</h5>
+        <div class="p-formgrid grid">
+            <div class="field col-3">
+                <label>Especialidades:</label>
+                <input pInputText name="especialidad" type="text" #especialidad="ngModel"
+                    [ngClass]="{'ng-dirty ng-invalid' : myform.submitted  && !especialidad.valid}"
+                    [(ngModel)]="registro.especialidad" required />
+                <small *ngIf="myform.submitted  && !especialidad.valid" class="p-error">Campo obligatorio.</small>
+            </div>
+            <div class="field col-3">
+                <label>Roles y permisos:</label>
+                <p-dropdown filter="true" name="rolesId" [options]="roles" #rolId="ngModel"
+                    [ngClass]="{'ng-dirty ng-invalid' : myform.submitted  && !rolId.valid}" [(ngModel)]="registro.rolId"
+                    required></p-dropdown>
+                <small *ngIf="myform.submitted  && !rolId.valid" class="p-error">Campo obligatorio.</small>
+            </div>
+            <div class="field col-3">
+                <label>Activo:</label>
+                <br>
+                <p-checkbox name="groupname" inputId="binary" [(ngModel)]="registro.activo" binary="true"></p-checkbox>
+            </div>
+        </div>
+        <div class="grid">
+            <div class="col-offset-8 col-2"><button pButton pRipple type="button" label="Cancelar" icon="pi pi-times"
+                    class="p-button-rounded mr-2 mb-2 p-button-secondary" (click)="cancelarAccion()"></button></div>
+            <div class="col-2"> <button pButton pRipple type="submit" label="Guardar" icon="pi pi-check"
+                    class="p-button-rounded mr-2 mb-2 p-button-success"></button></div>
+        </div>
+    </div>
+
+    <!-- TABLA DE PACIENTES -->
+    <div class="col-12" *ngIf="tipo=='militar' && !segmentos">
+        <div class="card">
+            <h1>
+                <span>
+                    <div>
+                        PERSONAL MILITAR
+                    </div>
+                </span>
+            </h1>
+            <p-divider class="col-12"></p-divider>
+            <p-panel>
+                <ng-template class="grid" pTemplate="header">
+                    <div>
+                        <button pButton type="button" class=" p-button p-button-warning" label="Agregar"
+                            icon="pi pi-plus" (click)="usuarioNuevo(myform)"></button>
+                    </div>
+                </ng-template>
+                <p-table [value]="registros" dataKey="id" [rows]="8" [loading]="loading" [rowHover]="true"
+                    (onLazyLoad)="loadPersonaLazy($event)" styleClass="p-datatable-gridlines" [paginator]="true"
+                    [globalFilterFields]="['name','country.name','representative.name','status']"
+                    responsiveLayout="scroll">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th>
+                                <div class="flex justify-content-between align-items-center">
+                                    Cédula
+                                </div>
+                            </th>
+                            <th>
+                                <div class="flex justify-content-between align-items-center">
+                                    Grado
+                                </div>
+                            </th>
+                            <th>
+                                <div class="flex justify-content-between align-items-center">
+                                    Nombres
+                                </div>
+                            </th>
+                            <th>
+                                <div class="flex justify-content-between align-items-center">
+                                    Sexo
+                                </div>
+                            </th>
+                            <th>
+                                <div class="flex justify-content-between align-items-center">
+                                    Teléfono
+                                </div>
+                            </th>
+                            <th style="width: 8rem">
+                                <div class="flex justify-content-between align-items-center">
+                                    Opciones
+                                </div>
+                            </th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-data>
+                        <tr>
+                            <td style="min-width: 6rem;">
+                                {{data.cedula}}
+                            </td>
+                            <td style="min-width: 8rem;">
+                                {{data.grado.nombre}}
+                            </td>
+                            <td style="min-width: 14rem;">
+                                <span class="image-text ml-2">{{data.nombres| uppercase}}</span>
+                            </td>
+                            <td style="min-width: 8rem;">
+                                {{data.sexo.nombre}}
+                            </td>
+                            <td style="min-width: 8rem;">
+                                {{data.telefono}}
+                            </td>
+                            <td class="text-center" style="min-width: 6rem;">
+                                <button pButton pRipple type="button" icon="pi pi-users"
+                                    class="p-button-rounded mr-2 mb-2" (click)="abrirModal(data)"></button>
+                                <button pButton pRipple type="button" (click)="editar(data)" icon="pi pi-pencil"
+                                    class="p-button-rounded mr-2 mb-2 p-button-warning"></button>
+                            </td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </p-panel>
+
+        </div>
+    </div>
+
+    <!-- TABLA DE ESPECIALISTAS -->
+    <div class="card" *ngIf="tipo =='doctor' && !segmentos">
+        <h1>
+            <span>
+                <div>
+                    Especialistas
+                </div>
+            </span>
+        </h1>
+        <p-divider class="col-12"></p-divider>
+        <p-panel>
+            <ng-template class="grid" pTemplate="header">
+                <div>
+                    <button pButton type="button" class=" p-button p-button-warning" label="Agregar" icon="pi pi-plus"
+                        (click)="usuarioNuevo(myform)"></button>
+                </div>
             </ng-template>
-            <ng-template pTemplate="body" let-customer>
-                <tr>
-                    <td style="min-width: 6rem;">
-                        0000999999
-                    </td>
-                    <td style="min-width: 8rem;">
-                        GENERAL
-                    </td>
-                    <td style="min-width: 14rem;">
-                        <span class="image-text ml-2">{{customer.country.name}}</span>
-                    </td>
-                    <td style="min-width: 8rem;">
-                        MASCULINO
-                    </td>
-                    <td class="text-center" style="min-width: 8rem;">
-                        09912157854
-                    </td>
+            <p-table #dt1 [value]="registros" dataKey="id" [rows]="10" [loading]="loading" [rowHover]="true"
+                styleClass="p-datatable-gridlines" [paginator]="true"
+                [globalFilterFields]="['name','country.name','representative.name','status']" responsiveLayout="scroll">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>
+                            <div class="flex justify-content-between align-items-center">
+                                Cédula
+                            </div>
+                        </th>
+                        <th>
+                            <div class="flex justify-content-between align-items-center">
+                                Nombres
+                            </div>
+                        </th>
+                        <th>
+                            <div class="flex justify-content-between align-items-center">
+                                Teléfono
+                            </div>
+                        </th>
+                        <th>
+                            <div class="flex justify-content-between align-items-center">
+                                Rol
+                            </div>
+                        </th>
+                        <th style="width: 8rem">
+                            <div class="flex justify-content-between align-items-center">
+                                Estado
+                            </div>
+                        </th>
+                        <th style="width: 8rem">
+                            <div class="flex justify-content-between align-items-center">
+                                Opciones
+                            </div>
+                        </th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-items>
+                    <tr>
+                        <td style="min-width: 6rem;">
+                            {{items.cedula}}
+                        </td>
+                        <td style="min-width: 8rem;">
+                            <span class="image-text ml-2">{{items.nombres| uppercase}}</span>
+                        </td>
+                        <td style="min-width: 14rem;">
+                            {{items.telefono}}
+                        </td>
+                        <td style="min-width: 8rem;">
+                            {{items.rol.nombre}}
+                        </td>
+                        <td class="text-center" style="min-width: 8rem;">
+                            <p-tag *ngIf="items.activo == true" value="Activo" severity="success" icon="pi pi-check">
+                            </p-tag>
+                            <p-tag *ngIf="items.activo == false" value="Inactivo" severity="danger" icon="pi pi-times">
+                            </p-tag>
+                        </td>
+                        <td class="text-center" style="min-width: 6rem;">
+                            <button pButton pRipple type="button" icon="pi pi-pencil"
+                                class="p-button-rounded mr-2 mb-2 p-button-warning" (click)="editar(items)"></button>
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </p-panel>
 
-                    <td class="text-center" style="min-width: 6rem;">
-                        <button (click)="display=true" pButton pRipple type="button" icon="pi pi-users"
-                            class="p-button-rounded mr-2 mb-2"></button>
-                        <button pButton pRipple type="button" icon="pi pi-pencil"
-                            class="p-button-rounded mr-2 mb-2"></button>
-                    </td>
-                </tr>
-            </ng-template>
-        </p-table>
     </div>
-</div>
-<!-- TABLA DE ESPECIALISTAS -->
+</form>
 
-<div class="card">
-    <p-table #dt1 [value]="customers1" dataKey="id" [rows]="10" [loading]="loading" [rowHover]="true"
-        styleClass="p-datatable-gridlines" [paginator]="true"
-        [globalFilterFields]="['name','country.name','representative.name','status']" responsiveLayout="scroll">
-        <ng-template pTemplate="header">
-            <tr>
-                <th>
-                    <div class="flex justify-content-between align-items-center">
-                        Cédula
-                    </div>
-                </th>
-                <th>
-                    <div class="flex justify-content-between align-items-center">
-                        Nombres
-                    </div>
-                </th>
-                <th>
-                    <div class="flex justify-content-between align-items-center">
-                        Teléfono
-                    </div>
-                </th>
-                <th>
-                    <div class="flex justify-content-between align-items-center">
-                        Rol
-                    </div>
-                </th>
-                <th style="width: 8rem">
-                    <div class="flex justify-content-between align-items-center">
-                        Estado
-                    </div>
-                </th>
-                <th style="width: 8rem">
-                    <div class="flex justify-content-between align-items-center">
-                        Opciones
-                    </div>
-                </th>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-customer>
-            <tr>
-                <td style="min-width: 6rem;">
-                    0000999999
-                </td>
-                <td style="min-width: 8rem;">
-                    <span class="image-text ml-2">{{customer.country.name}}</span>
-                </td>
-                <td style="min-width: 14rem;">
-                    055555555
-                </td>
-                <td style="min-width: 8rem;">
-                    medico
-                </td>
-                <td class="text-center" style="min-width: 8rem;">
-                    <i class="pi"
-                        [ngClass]="{'true-icon pi-check-circle text-green-500': customer.verified, 'false-icon pi-times-circle text-pink-500 ': !customer.verified}"></i>
-                    <i class="pi"
-                        [ngClass]="{'true-icon pi-check-circle text-green-500': customer.verified, 'false-icon pi-times-circle text-pink-500 ': !customer.verified}"></i>
-                </td>
-
-                <td class="text-center" style="min-width: 6rem;">
-                    <button pButton pRipple type="button" icon="pi pi-users"
-                        class="p-button-rounded mr-2 mb-2"></button>
-                    <button pButton pRipple type="button" icon="pi pi-pencil"
-                        class="p-button-rounded mr-2 mb-2"></button>
-                </td>
-            </tr>
-        </ng-template>
-    </p-table>
-</div>
-<p-dialog header="Familiares cercanos" [(visible)]="display" modal="modal" showEffect="fade" [style]="{width: '60vw'}"
-    [breakpoints]="{'960px': '75vw'}">
-    <app-familiares></app-familiares>
+<!-- DIALOGO DE FAMILIARIARES -->
+<p-dialog header="Familiares cercanos" *ngIf="display" [(visible)]="display" modal="modal" showEffect="fade"
+    [style]="{width: '60vw'}" [breakpoints]="{'960px': '75vw'}">
+    <app-familiares [persona]="registro"></app-familiares>
     <ng-template pTemplate="footer">
         <button pButton icon="pi pi-check" (click)="display=false" label="Ok" class="p-button-outlined"></button>
     </ng-template>

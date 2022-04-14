@@ -11,4 +11,5 @@ export class Persona{
     fechaNacimiento;
     lugarNacimiento;
     raza;
+    activo = false;
 }
